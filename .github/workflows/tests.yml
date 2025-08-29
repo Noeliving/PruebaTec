@@ -25,8 +25,19 @@ jobs:
       - name: Run Pytest (Web tests)
         run: pytest -v --alluredir=allure-results
 
-      - name: Save Allure Results
+      - name: Generate Allure Report
+        run: |
+          pip install allure-pytest allure-python-commons
+          allure generate allure-results -o allure-report --clean
+
+      - name: Upload Allure Results
         uses: actions/upload-artifact@v4
         with:
           name: allure-results
-          path: allure-results/ 
+          path: allure-results/
+
+      - name: Upload Allure Report (HTML)
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report/ 
