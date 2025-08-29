@@ -1,0 +1,16 @@
+# Dependencias para automatización de pruebas con Playwright y Pytest
+# Versiones verificadas en el sistema
+
+# Framework de testing
+pytest==8.4.1
+pytest-asyncio==1.1.0
+pytest-base-url==2.1.0
+pytest-html==4.1.1
+pytest-metadata==3.1.1
+
+# Automatización de navegadores
+playwright==1.52.0
+pytest-playwright==0.7.0
+
+# Reportes y reportes avanzados
+allure-pytest==2.15.0 

@@ -1,0 +1,175 @@
+# 🚀 Proyecto de Automatización RV - Sauce Demo
+
+Proyecto de automatización de pruebas web utilizando **Playwright**, **Pytest** y **Allure** para la aplicación [Sauce Demo](https://www.saucedemo.com/).
+
+---
+
+## 📁 Estructura del Proyecto
+
+```
+RV/                          # Carpeta raíz del proyecto
+│
+├── pages/                   # Page Objects (lógica de las páginas)
+│   ├── login_page.py        # Lógica de login (abrir página, login, error)
+│   └── inventory_page.py    # Lógica del inventario (productos, carrito)
+│
+├── tests/                   # Carpeta de tests
+│   ├── test_saucedemo2.py   # Tests principales
+│   └── tests_forzados_fallo.py # Tests diseñados para fallar (demo)
+│
+├── conftest.py              # Configuración común de Pytest (fixtures, setup/teardown)
+├── requirements.txt         # Dependencias del proyecto
+├── README.md                # Documentación del proyecto
+│
+├── allure-results/          # Resultados de Allure (generados automáticamente)
+├── videos/                  # Videos de ejecución de tests
+└── venv/                    # Entorno virtual de Python
+
+---
+
+## 🤔 Decisiones Tomadas
+
+- **Playwright** frente a Selenium: elegido por su mayor rapidez en la ejecución, soporte multiplataforma.
+- **Pytest**: framework ligero y flexible para estructurar los tests, con soporte nativo de fixtures y marcadores.
+- **Allure**: seleccionado para generar reportes claros con screenshots, vídeos y trazabilidad de pasos.
+- **Patrón Page Object Model (POM)**: permite mantener el código limpio, escalable y fácil de mantener.
+- **Evidencias automáticas**: se incluyen screenshots y vídeos en cada test, lo que facilita la validación y el reporte de defectos.
+- **-Buenas prácticas con GitHub**:  
+  - Creación de un repositorio en GitHub para almacenar el proyecto.  
+  - Rama principal (`main`) protegida, trabajando desde  rama secundaria para desarrollar.  
+  - Commits incrementales y descriptivos tras cada avance.  
+  - Uso de `push` progresivo para mantener la historia trazable.  
+
+---
+
+## 🛠️ Configuración del Proyecto
+
+### 📋 Prerrequisitos
+- Python 3.8+
+- Navegadores web instalados (Chrome, Firefox, Webkit)
+- Allure CLI instalado en el sistema
+
+### 🔧 Instalación
+
+1. **Clonar el repositorio**
+   
+2. **Crear y activar entorno virtual**
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  
+   venv\Scripts\activate      
+   ```
+
+3. **Instalar dependencias**
+   ```bash
+   pip install -r requirements.txt
+   playwright install
+   ```
+
+---
+
+## 🚀 Ejecución de Tests
+
+### 1. Ejecutar todos los tests
+```bash
+pytest
+```
+
+### 2.Ejecutar un archivo concreto
+Estos lanzas los tres de una vez
+pytest tests/test_saucedemo2.py
+pytest tests/tests_forzados_fallo.py
+```
+
+### 3. Ejecutar por marcadores
+Asi ejecuto el que considere necesario
+pytest -m login_correcto
+pytest -m login_incorrecto
+pytest -m carrito
+```
+
+### 3. Generar reporte con Allure(asi me limpia y me genera cada vez)
+```bash
+rm -rf allure-results allure-report
+pytest -v tests/test_saucedemo2.py --alluredir=allure-results
+allure generate allure-results -o allure-report --clean
+allure open allure-report
+```
+
+### 4. Ejecutar tests forzados a fallo con reporte Allure  (para verificar que allure devuelve el error)
+rm -rf allure-results allure-report
+pytest -v tests/tests_forzados_fallo.py --alluredir=allure-results
+allure generate allure-results -o allure-report --clean
+allure open allure-report
+```
+
+---
+
+## 🎬 Tests Implementados
+
+1. **`test_login_correcto`**  
+   - Login válido  
+   - Valida acceso al inventario  
+   - Adjunta screenshot y vídeo  
+
+2. **`test_login_incorrecto`**  
+   - Login inválido  
+   - Valida mensaje de error  
+   - Adjunta screenshot y vídeo  
+
+3. **`test_carrito_dos_productos`**  
+   - Añade 2 productos al carrito  
+   - Verifica contador = 2  
+   - Adjunta screenshot y vídeo  
+
+4. **Tests forzados a fallo (`tests_forzados_fallo.py`)**  
+   - Diseñados para mostrar cómo Allure refleja defectos (ejemplo: esperar 3 productos cuando solo hay 2).  
+
+
+
+## 🔍 Características del `conftest.py`
+
+El archivo `conftest.py` define un **fixture de Pytest** llamado `page`, que se encarga de:
+
+1. Inicializar el navegador (Chromium, configurable a Firefox o Webkit).  
+2. Configurar un contexto con **grabación de vídeo activada**.  
+3. Abrir una nueva página y entregarla al test (`yield`).  
+4. Cerrar la página, el contexto y el navegador automáticamente al finalizar cada test.  
+
+Esto permite que todos los tests tengan **vídeos y screenshots automáticos** para evitar repetir código.
+
+
+## 📱 Page Objects
+
+El proyecto utiliza el patrón **Page Object Model (POM)** para separar la lógica de las páginas y hacer los tests más mantenibles y escalables.  
+
+### 🔐 `login_page.py`
+Contiene la clase `LoginPage`, que abstrae las interacciones con la pantalla de login de SauceDemo:
+- **open()** → abre la URL principal de la aplicación.  
+- **login(user, pwd)** → introduce usuario y contraseña y hace clic en el botón de login.  
+- **get_error()** → devuelve el mensaje de error mostrado en pantalla tras un login inválido.  
+
+👉 Gracias a esta clase, los tests no necesitan repetir selectores ni pasos, solo llaman a `login_page.login(...)`.  
+
+---
+
+### 🛍️ `inventory_page.py`
+Contiene la clase `InventoryPage`, que gestiona la página de inventario tras el login:
+- **is_loaded()** → verifica que el inventario se cargó correctamente.  
+- **add_two_products()** → añade 2 productos concretos al carrito (backpack y bike light).  
+- **get_cart_count()** → devuelve el número de productos en el carrito.  
+
+👉 Esto permite validar fácilmente la funcionalidad del carrito sin repetir código en cada test.  
+
+
+---
+
+## 🔮 Próximos Pasos
+
+- [ ] Integrar con CI/CD en GitHub Actions para ejecución automática tras cada push  
+- [ ] Añadir pruebas de regresión visual  
+- [ ] Extender la cobertura de pruebas de API y rendimiento  
+
+---
+
+**¡Disfruta automatizando! 🚀**
