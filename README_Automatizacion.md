@@ -20,7 +20,7 @@ RV/                          # Carpeta raíz del proyecto
 ├── conftest.py              # Configuración común de Pytest (fixtures, setup/teardown)
 ├── requirements.txt         # Dependencias del proyecto
 ├── README.md                # Documentación del proyecto
-│
+├── .github                  # Archivo para ejecutar test en github manualmente	
 ├── allure-results/          # Resultados de Allure (generados automáticamente)
 ├── videos/                  # Videos de ejecución de tests
 └── venv/                    # Entorno virtual de Python
@@ -36,7 +36,7 @@ RV/                          # Carpeta raíz del proyecto
 - **Evidencias automáticas**: se incluyen screenshots y vídeos en cada test, lo que facilita la validación y el reporte de defectos.
 - **-Buenas prácticas con GitHub**:  
   - Creación de un repositorio en GitHub para almacenar el proyecto.  
-  - Rama principal (`main`) protegida, trabajando desde  rama secundaria para desarrollar.  
+  - Rama principal (`main`) , trabajando desde  rama secundaria para desarrollar.  
   - Commits incrementales y descriptivos tras cada avance.  
   - Uso de `push` progresivo para mantener la historia trazable.  
 
