@@ -1,3 +1,4 @@
+import os
 import pytest
 from playwright.sync_api import sync_playwright
 
@@ -6,8 +7,13 @@ from playwright.sync_api import sync_playwright
 @pytest.fixture
 def page():
     with sync_playwright() as p:
-        # Lanzar navegador Chromium (puedes cambiar a firefox o webkit)
-        browser = p.chromium.launch(headless=False)  # headless=True para ocultar ventana
+        # Detecta si se está ejecutando en CI/CD (GitHub Actions define CI=true)
+        is_ci = os.getenv("CI") == "true"
+
+        # Lanzar navegador Chromium
+        browser = p.chromium.launch(
+            headless=is_ci  # 👉 True en GitHub Actions, False en local
+        )
 
         # Crear un contexto con grabación de vídeo activada
         context = browser.new_context(record_video_dir="tests/videos/")
