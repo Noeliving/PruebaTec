@@ -52,3 +52,4 @@ videos/
 # Archivos de configuración local
 config.local.js
 settings.local.json 
+tests/test_saucedemo.py
