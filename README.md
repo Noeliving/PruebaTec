@@ -98,6 +98,31 @@ pytest -m carrito
 
 ### 4. Generar reporte con Allure(asi me limpia y me genera cada vez)
 
+---
+
+## ⚙️ **Configuración de Pytest**
+
+### Archivo pytest.ini
+Se ha configurado un archivo `pytest.ini` para registrar las marcas personalizadas utilizadas en los tests:
+
+```ini
+[pytest]
+markers =
+    login_correcto: Tests relacionados con login exitoso
+    login_incorrecto: Tests relacionados con login fallido
+    carrito: Tests relacionados con funcionalidad del carrito
+    api: Tests de APIs
+    ui: Tests de interfaz de usuario
+    smoke: Tests de humo (críticos)
+    regression: Tests de regresión
+```
+
+**Beneficios:**
+- ✅ Elimina advertencias de marcas desconocidas
+- ✅ Ejecución de tests más limpia y profesional
+- ✅ Organización clara de los tipos de tests
+- ✅ Permite filtrar tests por categorías específicas
+
 ```###Genera el repote solo de un archivo###
 rm -rf allure-results allure-report
 pytest -v tests/test_saucedemo2.py --alluredir=allure-results
