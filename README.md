@@ -1,10 +1,10 @@
-# 🚀 Proyecto de Automatización RV - Sauce Demo
+# 🚀 **Proyecto de Automatización RV - Sauce Demo**
 
 Proyecto de automatización de pruebas web utilizando **Playwright**, **Pytest** y **Allure** para la aplicación [Sauce Demo](https://www.saucedemo.com/).
 
 ---
 
-## 📁 Estructura del Proyecto
+## 📁 **Estructura del Proyecto**
 
 ```
 RV/                          # Carpeta raíz del proyecto
@@ -27,7 +27,7 @@ RV/                          # Carpeta raíz del proyecto
 
 ---
 
-## 🤔 Decisiones Tomadas
+## 🤔 **Decisiones Tomadas**
 
 - **Playwright** frente a Selenium: elegido por su mayor rapidez en la ejecución, soporte multiplataforma.
 - **Pytest**: framework ligero y flexible para estructurar los tests, con soporte nativo de fixtures y marcadores.
@@ -42,7 +42,7 @@ RV/                          # Carpeta raíz del proyecto
 
 ---
 
-## 🛠️ Configuración del Proyecto
+## 🛠️ **Configuración del Proyecto**
 
 ### 📋 Prerrequisitos
 - Python 3.8+
@@ -68,7 +68,7 @@ RV/                          # Carpeta raíz del proyecto
 
 ---
 
-## 🚀 Ejecución de Tests
+## 🚀 **Ejecución de Tests**
 
 ### 1. Ejecutar todos los tests
 ```bash
@@ -81,7 +81,7 @@ pytest tests/test_saucedemo2.py
 pytest tests/tests_forzados_fallo.py
 ```
 
-### 3. Ejecutar por marcadores
+### 3. **Ejecutar por marcadores**
 Asi ejecuto el que considere necesario
 pytest -m login_correcto
 pytest -m login_incorrecto
@@ -95,6 +95,7 @@ pytest -v tests/test_saucedemo2.py --alluredir=allure-results
 allure generate allure-results -o allure-report --clean
 allure open allure-report
 ```
+💡 **NOTA:** Limpia resultados anteriores, ejecuta solo los tests marcados con el marcador en este caso login_correcto, genera el reporte de Allure y lo abre en el navegador.
 
 ### 4. Ejecutar tests forzados a fallo con reporte Allure  (para verificar que allure devuelve el error)
 rm -rf allure-results allure-report
@@ -105,7 +106,7 @@ allure open allure-report
 
 ---
 
-## 🎬 Tests Implementados
+## 🎬 **Tests Implementados**
 
 1. **`test_login_correcto`**  
    - Login válido  
@@ -127,7 +128,7 @@ allure open allure-report
 
 
 
-## 🔍 Características del `conftest.py`
+## 🔍 **Características del `conftest.py`**
 
 El archivo `conftest.py` define un **fixture de Pytest** llamado `page`, que se encarga de:
 
@@ -139,7 +140,7 @@ El archivo `conftest.py` define un **fixture de Pytest** llamado `page`, que se 
 Esto permite que todos los tests tengan **vídeos y screenshots automáticos** para evitar repetir código.
 
 
-## 📱 Page Objects
+## 📱 **Page Objects**
 
 El proyecto utiliza el patrón **Page Object Model (POM)** para separar la lógica de las páginas y hacer los tests más mantenibles y escalables.  
 
@@ -164,7 +165,7 @@ Contiene la clase `InventoryPage`, que gestiona la página de inventario tras el
 
 ---
 
-## 🔮 Próximos Pasos
+## 🔮 **Próximos Pasos**
 
 - [ ] Integrar la ejecución automática tras cada push
 - [ ] Mejorar los tiempos en la ejecucion del test en Github  
