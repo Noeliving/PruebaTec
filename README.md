@@ -7,23 +7,28 @@ Proyecto de automatización de pruebas web utilizando **Playwright**, **Pytest**
 ## 📁 **Estructura del Proyecto**
 
 ```
-RV/                          # Carpeta raíz del proyecto
+PruebaTec/                   # Carpeta raíz del proyecto
 │
 ├── pages/                   # Page Objects (lógica de las páginas)
 │   ├── login_page.py        # Lógica de login (abrir página, login, error)
 │   └── inventory_page.py    # Lógica del inventario (productos, carrito)
 │
-├── tests/                   # Carpeta de tests
+├── tests/                   # Carpeta de tests (solo código)
 │   ├── test_saucedemo2.py   # Tests principales
-│   └── tests_forzados_fallo.py # Tests diseñados para fallar (demo)
+│   └── tests_forzados_fallo.py # Tests diseñados para fallar 
 │
+├── videos/                  # Videos de ejecución de tests
 ├── conftest.py              # Configuración común de Pytest (fixtures, setup/teardown)
 ├── requirements.txt         # Dependencias del proyecto
 ├── README.md                # Documentación del proyecto
-├── .github                  # Archivo para ejecutar test en github manualmente	
-├── allure-results/          # Resultados de Allure (generados automáticamente)
-├── videos/                  # Videos de ejecución de tests
+├── .github/                 # Workflows de GitHub Actions
+├── .gitignore/              # Archivos y carpetas ignorados por Git
+├── allure-results/          # Resultados de Allure (generados automáticamente solo en local)
+├── allure-report/           # Reportes HTML generados (solo local)
 └── venv/                    # Entorno virtual de Python
+```
+
+> **💡 Nota:** Los reportes de Allure (`allure-results/` y `allure-report/`) están protegidos en `.gitignore` y solo se generan localmente. No se suben al repositorio para mantenerlo limpio y eficiente.
 
 ---
 
@@ -38,10 +43,13 @@ RV/                          # Carpeta raíz del proyecto
   - Creación de un repositorio en GitHub para almacenar el proyecto.  
   - Rama principal (`main`) , trabajando desde  rama secundaria para desarrollar.  
   - Commits incrementales y descriptivos tras cada avance.  
-  - Uso de `push` progresivo para mantener la historia trazable.  
-
----
-
+  - Uso de `push` progresivo para mantener la historia trazable.
+  
+- **Gestión de archivos con `.gitignore`**:  
+  - Archivo `.gitignore` incluido en el repositorio para proteger archivos sensibles.  
+  - Evita subir automáticamente reportes de Allure, videos y archivos temporales.  
+  - Mantiene el repositorio limpio y eficiente, solo con código fuente.  
+  - Permite que cada desarrollador genere sus propios reportes localmente.  
 ## 🛠️ **Configuración del Proyecto**
 
 ### 📋 Prerrequisitos
@@ -75,13 +83,14 @@ RV/                          # Carpeta raíz del proyecto
 pytest
 ```
 
-### 2.Ejecutar un archivo concreto
+### 2. Ejecutar un archivo concreto
 Estos lanzas los tres de una vez
 pytest tests/test_saucedemo2.py
 pytest tests/tests_forzados_fallo.py
 ```
 
-### 3. **Ejecutar por marcadores**
+### 3. Ejecutar por marcadores
+
 Asi ejecuto el que considere necesario
 pytest -m login_correcto
 pytest -m login_incorrecto
@@ -104,7 +113,7 @@ allure generate allure-results -o allure-report --clean
 allure open allure-report
 ```
 
----
+
 
 ## 🎬 **Tests Implementados**
 
@@ -168,9 +177,11 @@ Contiene la clase `InventoryPage`, que gestiona la página de inventario tras el
 ## 🔮 **Próximos Pasos**
 
 - [ ] Integrar la ejecución automática tras cada push
-- [ ] Mejorar los tiempos en la ejecucion del test en Github  
-- [ ] Extender la cobertura en las pruebas de API y rendimiento  
+- [ ] Mejorar los tiempos en la ejecucion del test en Github
+- [ ] Pruebas de regresión mas comppletas
+- [ ] Añadir metricas de ejecución 
+- [ ] Extender la cobertura en las pruebas de API y realizar pruebas de performance  
 
 ---
 
-**¡Disfruta automatizando! 🚀**
+**¡Seguiremos trabajando! 🚀**
