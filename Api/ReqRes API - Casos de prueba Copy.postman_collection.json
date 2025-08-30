@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "883f282a-96d2-4208-be35-2dea32dec6e6",
+		"name": "ReqRes API - Casos de prueba Copy",
+		"description": "Colección con los 3 casos del ejercicio sobre ReqRes API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23659417"
+	},
+	"item": [
+		{
+			"name": "Login - Correcto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has token\", function () {",
+							"    pm.expect(pm.response.json()).to.have.property(\"token\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"eve.holt@reqres.in\",\n    \"password\": \"cityslicka\"\n}"
+				},
+				"url": {
+					"raw": "https://reqres.in/api/login",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login - Error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"Response has error message\", function () {",
+							"    pm.expect(pm.response.json()).to.have.property(\"error\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"eve.holt@reqres.in\",\n    \"password\": \"\"\n}"
+				},
+				"url": {
+					"raw": "https://reqres.in/api/login",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Users Page 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has a list of users\", function () {",
+							"    let jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data).to.be.an(\"array\").that.is.not.empty;",
+							"});",
+							"",
+							"pm.test(\"Response is from page 2\", function () {",
+							"    let jsonData = pm.response.json();",
+							"    pm.expect(jsonData.page).to.eql(2, \"The response is not from page 2\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"All users have valid emails\", function () {",
+							"    let jsonData = pm.response.json();",
+							"",
+							"    // Validar que hay usuarios en la lista",
+							"    pm.expect(jsonData.data.length).to.be.above(0, \"No users found in response\");",
+							"",
+							"    // Validar que todos los emails son correctos",
+							"    jsonData.data.forEach(user => {",
+							"        pm.expect(user).to.have.property(\"email\");",
+							"        pm.expect(user.email).to.match(/^[^@]+@[^@]+\\.[^@]+$/);",
+							"    });",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "reqres-free-v1"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "https://reqres.in/api/users?page=2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
