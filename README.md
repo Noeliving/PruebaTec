@@ -59,7 +59,7 @@ PruebaTec/                   # Carpeta raíz del proyecto
 ### 🔧 Instalación
 
 1. **Clonar el repositorio**
-   
+   git clone:
 2. **Crear y activar entorno virtual**
    ```bash
    python3 -m venv venv
@@ -96,13 +96,21 @@ pytest -m login_incorrecto
 pytest -m carrito
 ```
 
-### 3. Generar reporte con Allure(asi me limpia y me genera cada vez)
-```bash
+### 4. Generar reporte con Allure(asi me limpia y me genera cada vez)
+
+```###Genera el repote solo de un archivo###
 rm -rf allure-results allure-report
 pytest -v tests/test_saucedemo2.py --alluredir=allure-results
 allure generate allure-results -o allure-report --clean
 allure open allure-report
 ```
+### . Generar reporte con marcador(asi me limpia y me genera cada vez)
+
+ rm -rf allure-results allure-report && \
+pytest -m login_incorrecto --alluredir=allure-results && \
+allure generate allure-results -o allure-report --clean && \
+allure open allure-report
+
 💡 **NOTA:** Limpia resultados anteriores, ejecuta solo los tests marcados con el marcador en este caso login_correcto, genera el reporte de Allure y lo abre en el navegador.
 
 ### 4. Ejecutar tests forzados a fallo con reporte Allure  (para verificar que allure devuelve el error)
