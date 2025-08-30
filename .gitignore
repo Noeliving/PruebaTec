@@ -41,7 +41,9 @@ venv/
 
 # --- Reportes de test ---
 allure-results/
+allure-results-*/
 allure-report/
+allure-report-*/
 videos/
 
 # Archivos de datos temporales
