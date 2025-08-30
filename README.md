@@ -16,14 +16,25 @@ PruebaTec/                   # Carpeta raíz del proyecto
 │   ├── test_saucedemo2.py   # Tests principales
 │   └── tests_forzados_fallo.py # Tests diseñados para fallar 
 │
-├── videos/                  # Videos de ejecución de tests (solo local)
+├── Api/                     # Tests de APIs
+│   ├── test_api_tecnico.py  # Tests de ReqRes API
+│   └── README_APIs.md       # Documentación de APIs
+│
+├── .github/                 # Workflows de GitHub Actions
+│   └── workflows/
+│       └── tests.yml        # CI/CD para tests web y API
+│
 ├── conftest.py              # Configuración común de Pytest (fixtures, setup/teardown)
+├── pytest.ini              # Configuración de marcas personalizadas
 ├── requirements.txt         # Dependencias del proyecto
 ├── README.md                # Documentación del proyecto
-├── .github/                 # Workflows de GitHub Actions
-├── .gitignore/              # Archivos y carpetas ignorados por Git
-├── allure-results/          # Resultados de Allure (generados automáticamente solo en local)
-├── allure-report/           # Reportes HTML generados (solo local)
+├── .gitignore               # Archivos y carpetas ignorados por Git
+│
+├── videos/                  # Videos de ejecución de tests (solo local)
+├── allure-results/          # Resultados de Allure web (solo local)
+├── allure-results-api/      # Resultados de Allure API (solo local)
+├── allure-report/           # Reportes HTML web (solo local)
+├── allure-report-api/       # Reportes HTML API (solo local)
 └── venv/                    # Entorno virtual de Python (solo local)
 ```
 
@@ -210,11 +221,10 @@ Contiene la clase `InventoryPage`, que gestiona la página de inventario tras el
 
 - [ ] Mejorar los tiempos en la ejecucion del test en Github
 - [ ] Pruebas de regresión mas completas de flujo de negocio
+- [ ] Mejorar los reportes para que cualquier usuario que no tenga allure pueda visualizarlos
 - [ ] Añadir metricas de ejecución 
 - [ ] Adaptar los tests de Playwright para que se ejecuten siempre en **modo headless** cuando corren en GitHub Actions.
-
-
-- [ ] Extender la cobertura en las pruebas de API y realizar pruebas de performance  
+- [ ] Realizar pruebas de performance con herramientas como JMeter simulando x usuarios cada x segundos.   
 
 ---
 
