@@ -166,9 +166,9 @@ Contiene la clase `InventoryPage`, que gestiona la página de inventario tras el
 
 ## 🔮 Próximos Pasos
 
-- [ ] Integrar con CI/CD en GitHub Actions para ejecución automática tras cada push  
-- [ ] Añadir pruebas de regresión visual  
-- [ ] Extender la cobertura de pruebas de API y rendimiento  
+- [ ] Integrar la ejecución automática tras cada push
+- [ ] Mejorar los tiempos en la ejecucion del test en Github  
+- [ ] Extender la cobertura en las pruebas de API y rendimiento  
 
 ---
 
