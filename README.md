@@ -206,12 +206,14 @@ Contiene la clase `InventoryPage`, que gestiona la página de inventario tras el
 
 ---
 
-## 🔮 **Próximos Pasos**
+## 🔮 **Próximos Mejoras*
 
-- [ ] Integrar la ejecución automática tras cada push
 - [ ] Mejorar los tiempos en la ejecucion del test en Github
-- [ ] Pruebas de regresión mas comppletas
+- [ ] Pruebas de regresión mas completas de flujo de negocio
 - [ ] Añadir metricas de ejecución 
+- [ ] Adaptar los tests de Playwright para que se ejecuten siempre en **modo headless** cuando corren en GitHub Actions.
+
+
 - [ ] Extender la cobertura en las pruebas de API y realizar pruebas de performance  
 
 ---
