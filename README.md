@@ -1,8 +1,7 @@
-# 🚀 **Proyecto de Automatización RV - Sauce Demo**
+# 🚀 **Proyecto de Automatización Prueba Técnica**
 
-Proyecto de automatización de pruebas web utilizando **Playwright**, **Pytest** y **Allure** para la aplicación [Sauce Demo](https://www.saucedemo.com/).
+Proyecto de automatización de pruebas web utilizando **Playwright**, **Pytest**, **Allure**, **GitHub Actions** y **Page Object Model (POM)** para la aplicación [Sauce Demo](https://www.saucedemo.com/). Incluye **CI/CD automatizado**, **reportes visuales avanzados**, **grabación de videos** y **gestión inteligente de evidencias**.
 
----
 
 ## 📁 **Estructura del Proyecto**
 
@@ -13,11 +12,11 @@ PruebaTec/                   # Carpeta raíz del proyecto
 │   ├── login_page.py        # Lógica de login (abrir página, login, error)
 │   └── inventory_page.py    # Lógica del inventario (productos, carrito)
 │
-├── tests/                   # Carpeta de tests (solo código)
+├── tests/                   # Carpeta de tests 
 │   ├── test_saucedemo2.py   # Tests principales
 │   └── tests_forzados_fallo.py # Tests diseñados para fallar 
 │
-├── videos/                  # Videos de ejecución de tests
+├── videos/                  # Videos de ejecución de tests (solo local)
 ├── conftest.py              # Configuración común de Pytest (fixtures, setup/teardown)
 ├── requirements.txt         # Dependencias del proyecto
 ├── README.md                # Documentación del proyecto
@@ -25,10 +24,10 @@ PruebaTec/                   # Carpeta raíz del proyecto
 ├── .gitignore/              # Archivos y carpetas ignorados por Git
 ├── allure-results/          # Resultados de Allure (generados automáticamente solo en local)
 ├── allure-report/           # Reportes HTML generados (solo local)
-└── venv/                    # Entorno virtual de Python
+└── venv/                    # Entorno virtual de Python (solo local)
 ```
 
-> **💡 Nota:** Los reportes de Allure (`allure-results/` y `allure-report/`) están protegidos en `.gitignore` y solo se generan localmente. No se suben al repositorio para mantenerlo limpio y eficiente.
+> **💡 Nota:** Los reportes de Allure (`allure-results/` y `allure-report/, videos, venv`) están protegidos en `.gitignore` y solo se generan localmente. No se suben al repositorio para mantenerlo limpio y eficiente.
 
 ---
 
