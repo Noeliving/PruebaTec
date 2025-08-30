@@ -13,4 +13,7 @@ playwright==1.52.0
 pytest-playwright==0.7.0
 
 # Reportes y reportes avanzados
-allure-pytest==2.15.0 
+allure-pytest==2.15.0
+
+# HTTP requests para tests de API
+requests==2.31.0 
